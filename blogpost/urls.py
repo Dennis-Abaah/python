@@ -21,3 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path( '' , include ('post.urls')),
 ]
+
+from django.contrib.auth.models import User
+
+# This will try to create a superuser every time the site starts
+try:
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'abaahdennis54@example.com', 'Abaah@2007')
+except:
+    pass
