@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write News</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        form{
+            background: #eee;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+        }
+        input, textarea{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button{
+            background: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <h2>Write a news Article</h2>
+    <form method="POST">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit">Publish Post</button>
+    </form>
+    <br>
+    <a href="/">Back to Home</a>
+    {% else %}
+     <h1><a href="login">Login</a> to create posts.</h1>
+    {% endif %}
+</body>
+</html>
